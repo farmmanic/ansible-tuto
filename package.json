@@ -9,14 +9,17 @@
   "dependencies": {
     "gitbook-cli": "~2.3.1",
     "gitbook-plugin-edit-link": "~2.0.2",
-    "gitbook-plugin-github": "~2.0.0"
+    "gitbook-plugin-github": "~2.0.0",
+    "@snyk/protect": "latest"
   },
   "devDependencies": {},
   "scripts": {
     "docs:prepare": "gitbook install",
     "docs:watch": "npm run docs:prepare && gitbook serve",
     "docs:build": "npm run docs:prepare && rm -rf _book && gitbook build",
-    "docs:publish": "npm run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push https://github.com/leucos/ansible-tuto gh-pages --force"
+    "docs:publish": "npm run docs:build && cd _book && git init && git commit --allow-empty -m 'Update docs' && git checkout -b gh-pages && git add . && git commit -am 'Update docs' && git push https://github.com/leucos/ansible-tuto gh-pages --force",
+    "prepublish": "npm run snyk-protect",
+    "snyk-protect": "snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -31,5 +34,6 @@
   "bugs": {
     "url": "https://github.com/leucos/ansible-tuto/issues"
   },
-  "homepage": "https://github.com/leucos/ansible-tuto#readme"
+  "homepage": "https://github.com/leucos/ansible-tuto#readme",
+  "snyk": true
 }
